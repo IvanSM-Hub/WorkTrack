@@ -1,14 +1,26 @@
 spring:
   application:
     name: WorkTrack
+  config:
+    import:
+      - optional:file:../.env[.properties]
   profiles:
     active:
-    - ${SPRING_PROFILES_ACTIVE:DEV}
+      - ${SPRING_PROFILES_ACTIVE:DEV}
   datasource:
-    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5433}/${POSTGRES_DB}
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB}
     username: ${POSTGRES_USER}
     password: ${POSTGRES_PASSWORD}
     driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: false
+    defer-datasource-initialization: true
+    properties:
+      hibernate:
+        format_sql: true
 
 springdoc:
   swagger-ui:
