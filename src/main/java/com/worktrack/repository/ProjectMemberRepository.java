@@ -9,6 +9,7 @@ import com.worktrack.entity.ProjectMember;
 
 public interface ProjectMemberRepository extends JpaRepository<ProjectMember, UUID> {
 
-    List<ProjectMember> findByProjectId();
+    List<ProjectMember> findByProjectId(UUID projectId);
+    boolean existsByProjectIdAndUserId(UUID projectId, UUID userId);
 
 }
