@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 @Entity
-@Table(name = "tasks")
+@Table(name = "comments")
 public class Comment extends BaseEntity {
 
     @Column(nullable = false, length = 500)
@@ -28,7 +28,7 @@ public class Comment extends BaseEntity {
     private Task task;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "author_id", nullable = false)
     private User author;
 
 }

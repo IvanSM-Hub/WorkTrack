@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 @Entity
-@Table(name = "projects_members")
+@Table(name = "project_members")
 public class ProjectMember extends BaseEntity {
 
     @Column(nullable = false, updatable = false)

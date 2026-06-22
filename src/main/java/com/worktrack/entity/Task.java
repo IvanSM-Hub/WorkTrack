@@ -9,6 +9,8 @@ import com.worktrack.util.TaskStatus;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -35,9 +37,11 @@ public class Task extends BaseEntity {
     private String description;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private TaskStatus status;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private TaskPriority priority;
 
     @Column(nullable = true, updatable = false)
@@ -48,7 +52,7 @@ public class Task extends BaseEntity {
     private Project project;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "assigned_user_id", nullable = true)
     private User assignedUser;
 
     @OneToMany(mappedBy = "task", cascade = CascadeType.REMOVE)

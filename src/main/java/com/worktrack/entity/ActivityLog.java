@@ -2,10 +2,14 @@ package com.worktrack.entity;
 
 import java.util.UUID;
 
+
 import com.worktrack.util.ActivityAction;
+import com.worktrack.util.EntityType;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -21,16 +25,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 @Entity
-@Table(name = "activities_logs")
+@Table(name = "activity_logs")
 public class ActivityLog extends BaseEntity {
 
-    @Column(nullable = false, length = 50)
-    private String entityType;
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private EntityType entityType;
 
     @Column(nullable = false)
     private UUID entityId;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private ActivityAction action;
 
     @ManyToOne(fetch = FetchType.EAGER)

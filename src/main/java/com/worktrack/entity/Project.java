@@ -7,6 +7,8 @@ import com.worktrack.util.ProjectStatus;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -35,10 +37,11 @@ public class Project extends BaseEntity {
     @Column(nullable = false, updatable = false)
     private LocalDateTime startedAt;
     
-    @Column(nullable = false)
+    @Column(nullable = true)
     private LocalDateTime duration;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "status")
+    @Enumerated(EnumType.STRING)
     private  ProjectStatus projectStatus;
 
     @ManyToOne(fetch = FetchType.EAGER)
