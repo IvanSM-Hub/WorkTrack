@@ -1,11 +1,11 @@
-package com.worktrack.repository;
+package com.worktrack.repositories;
 
 import java.util.List;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.worktrack.entity.ProjectMember;
+import com.worktrack.entities.ProjectMember;
 
 public interface ProjectMemberRepository extends JpaRepository<ProjectMember, UUID> {
 

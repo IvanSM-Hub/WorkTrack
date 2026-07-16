@@ -1,11 +1,11 @@
-package com.worktrack.repository;
+package com.worktrack.repositories;
 
 import java.util.List;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.worktrack.entity.ActivityLog;
+import com.worktrack.entities.ActivityLog;
 import com.worktrack.util.EntityType;
 
 public interface ActivityLogRepository extends JpaRepository<ActivityLog, UUID> {

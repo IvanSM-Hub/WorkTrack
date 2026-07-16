@@ -1,4 +1,4 @@
-package com.worktrack.entity;
+package com.worktrack.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

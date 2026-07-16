@@ -1,4 +1,4 @@
-package com.worktrack.entity;
+package com.worktrack.entities;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
