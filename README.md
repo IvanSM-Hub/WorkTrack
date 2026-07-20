@@ -85,13 +85,13 @@ Project structure:
 com.ivansario.worktrack
 │
 ├── config
-├── controller
+├── controllers
 ├── dto
-├── entity
-├── exception
-├── repository
+├── entities
+├── exceptions
+├── repositories
 ├── security
-├── service
+├── services
 └── util
 ```
 

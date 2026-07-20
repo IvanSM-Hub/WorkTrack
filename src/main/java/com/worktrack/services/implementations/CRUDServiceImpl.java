@@ -1,12 +1,13 @@
-package com.worktrack.services;
+package com.worktrack.services.implementations;
 
 import java.io.Serializable;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.ParameterizedType;
+import java.util.function.Function;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.worktrack.services.interfaces.CRUDService;
+import com.worktrack.services.CRUDService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -80,6 +81,10 @@ public abstract class CRUDServiceImpl<E, ID extends Serializable> implements CRU
         }
         getRepository().delete(entity);
         return entity;
+    }
+
+    protected <T> T mapTo(E entity, Function<E, T> mapper) {
+        return mapper.apply(entity);
     }
     
 }
