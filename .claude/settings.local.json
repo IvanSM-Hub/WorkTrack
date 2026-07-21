@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la \"E:/documents/cursos/SecureAuth-API\" 2>&1 | head -50)",
+      "Read(//e/documents/cursos/SecureAuth-API/**)",
+      "Bash(./mvnw.cmd -q -o -DskipTests compile)"
+    ]
+  }
+}
