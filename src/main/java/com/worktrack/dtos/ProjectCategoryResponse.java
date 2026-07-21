@@ -12,8 +12,10 @@ import lombok.Setter;
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class RequestById {
+public class ProjectCategoryResponse {
 
-    private UUID objectId;
+    private UUID id;
+    private String name;
+    private String description;
 
 }

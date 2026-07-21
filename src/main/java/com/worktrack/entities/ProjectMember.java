@@ -24,10 +24,10 @@ public class ProjectMember extends BaseEntity {
     @Column(nullable = false, updatable = false)
     private LocalDateTime joinedAt;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Project project;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
 }
