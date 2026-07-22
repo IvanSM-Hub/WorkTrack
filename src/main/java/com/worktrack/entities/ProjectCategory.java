@@ -24,4 +24,7 @@ public class ProjectCategory extends BaseEntity {
     @Column(nullable = true, length = 255)
     private String description;
 
+    @Column(nullable = false)
+    private boolean enabled;
+
 }

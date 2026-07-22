@@ -32,7 +32,7 @@ public class Project extends BaseEntity {
     @Column(nullable = false, length = 100)
     private String name;
 
-    @Column(nullable = false, length = 500)
+    @Column(nullable = true, length = 500)
     private String description;
 
     @Column(nullable = true)

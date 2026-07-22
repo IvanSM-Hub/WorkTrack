@@ -1,7 +1,6 @@
 package com.worktrack.dtos;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -28,6 +27,6 @@ public class CreateProjectRequest {
     private LocalDateTime duration;
 
     @NotNull(message = "Category id is required")
-    private UUID categoryId;
+    private String categoryName;
 
 }

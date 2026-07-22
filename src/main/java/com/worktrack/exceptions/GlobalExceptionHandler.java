@@ -21,6 +21,12 @@ public class GlobalExceptionHandler extends Exception {
 		return buildResponse(HttpStatus.CONFLICT, ex.getMessage());
 	}
 
+	@ExceptionHandler(CategoryDisabledException.class)
+	public ResponseEntity<Map<String, Object>> handleCategoryDisabled(CategoryDisabledException ex) {
+		log.error("Category is disabled: {}", ex.getMessage());
+		return buildResponse(HttpStatus.CONFLICT, ex.getMessage());
+	}
+
 	@ExceptionHandler(CategoryNotFoundException.class)
 	public ResponseEntity<Map<String, Object>> handleCategoryAlreadyExists(CategoryNotFoundException ex) {
 		log.error("Category not found: {}", ex.getMessage());

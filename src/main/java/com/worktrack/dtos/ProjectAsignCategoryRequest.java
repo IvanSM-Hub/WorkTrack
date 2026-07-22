@@ -2,6 +2,7 @@ package com.worktrack.dtos;
 
 import java.util.UUID;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,11 +13,12 @@ import lombok.Setter;
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProjectCategoryResponse {
+public class ProjectAsignCategoryRequest {
 
-    private UUID id;
-    private String name;
-    private String description;
-    private boolean enabled;
+    @NotBlank(message = "Project ID is required.")
+    private UUID projectId;
+
+    @NotBlank(message = "Category is required.")
+    private String categoryName;
 
 }

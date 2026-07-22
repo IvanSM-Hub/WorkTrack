@@ -1,6 +1,8 @@
 package com.worktrack.dtos;
 
-import java.util.UUID;
+import java.util.List;
+
+import com.worktrack.util.ProjectStatus;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,11 +14,8 @@ import lombok.Setter;
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProjectCategoryResponse {
+public class ProjectsFilteredByStatusRequest {
 
-    private UUID id;
-    private String name;
-    private String description;
-    private boolean enabled;
+    private List<ProjectStatus> projectStatus;
 
 }

@@ -15,15 +15,14 @@ import lombok.RequiredArgsConstructor;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
-@RequestMapping("/api/categories")
 @RequiredArgsConstructor
+@RequestMapping("/api/categories")
 public class ProjectCategoryController {
 
     private final ProjectCategoryService categoryService;
@@ -33,23 +32,23 @@ public class ProjectCategoryController {
         return ResponseEntity.ok(categoryService.findAll());
     }
     
-    @GetMapping("/one")
+    @GetMapping("/find")
     public ResponseEntity<ProjectCategoryResponse> findOne(@RequestBody RequestById id) {
         return ResponseEntity.ok(categoryService.findOne(id));
     }
 
-    @PostMapping("/createOne")
+    @PostMapping("/create")
     public ResponseEntity<ProjectCategoryResponse> createOne(@Valid @RequestBody CreateProjectCategoryRequest request) {
         return ResponseEntity.ok(categoryService.createOne(request));
     }
     
-    @PutMapping("/updateOne")
+    @PutMapping("/update")
     public ResponseEntity<ProjectCategoryResponse> updateOne(@Valid @RequestBody UpdateProjectCategoryRequest request) {
         return ResponseEntity.ok(categoryService.updateOne(request));
     }
 
-    @DeleteMapping("/deleteOne")
-    public ResponseEntity<Boolean> deleteOne(@RequestBody RequestById id) {
+    @PutMapping("/delete")
+    public ResponseEntity<ProjectCategoryResponse> deleteOne(@RequestBody RequestById id) {
         return ResponseEntity.ok(categoryService.deleteOne(id));
     }
 

@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./mvnw.cmd -q -DskipTests compile)",
+      "Bash(./mvnw.cmd -DskipTests compile)",
+      "Bash(./mvnw.cmd -q -DskipTests clean compile)"
+    ]
+  }
+}

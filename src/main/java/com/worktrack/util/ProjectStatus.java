@@ -2,7 +2,12 @@ package com.worktrack.util;
 
 public enum ProjectStatus {
 
-    ACTIVE,
+    OPEN,
+    INPROGRESS,
+    UNDERREVIEW,
+    REOPEN,
+    RESOLVED,
+    FINISHED,
     ARCHIVED;
 
 }

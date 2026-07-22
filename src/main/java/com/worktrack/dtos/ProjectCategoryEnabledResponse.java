@@ -12,11 +12,11 @@ import lombok.Setter;
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProjectCategoryResponse {
-
+public class ProjectCategoryEnabledResponse {
+    
     private UUID id;
     private String name;
     private String description;
     private boolean enabled;
-
+    
 }
