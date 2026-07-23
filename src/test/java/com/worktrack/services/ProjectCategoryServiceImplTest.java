@@ -1,57 +1,85 @@
 package com.worktrack.services;
 
-import static org.mockito.Mockito.when;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
 import java.util.UUID;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.test.util.ReflectionTestUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertInstanceOf;
-
+import com.worktrack.dtos.ProjectCategoryEnabledResponse;
 import com.worktrack.dtos.ProjectCategoryResponse;
+import com.worktrack.dtos.RequestById;
 import com.worktrack.entities.ProjectCategory;
 import com.worktrack.repositories.ProjectCategoryRepository;
 import com.worktrack.services.implementations.ProjectCategoryServiceImpl;
 
-@ExtendWith(MockitoExtension.class)
+@SpringBootTest
+@Transactional
 public class ProjectCategoryServiceImplTest {
 
-    @Mock
-    private ProjectCategoryRepository categoryRepository;
-
-    @InjectMocks
+    @Autowired
     private ProjectCategoryServiceImpl categoryService;
 
-    @Test
-    void findAll_returnsAllCategoriesMapped() {
+    @Autowired
+    private ProjectCategoryRepository categoryRepository;
 
-        String categoryName = "Engineering"; 
-        String categoryDescription = "Tech projects"; 
+    private UUID marketingId;
 
+    @BeforeEach
+    public void insertData() {
+        categoryRepository.deleteAll();
+        saveCategory("Engineering", "Tech projects", true);
+        marketingId = saveCategory("Marketing", "Marketing projects", true).getId();
+        saveCategory("Legacy", "Old, disabled category", false);
+    }
+
+    private ProjectCategory saveCategory(String name, String description, boolean enabled) {
         ProjectCategory category = ProjectCategory.builder()
-                .name(categoryName)
-                .description(categoryDescription)
-                .enabled(true)
+                .name(name)
+                .description(description)
+                .enabled(enabled)
                 .build();
-        UUID categoryId = UUID.randomUUID();
-        ReflectionTestUtils.setField(category, "id", categoryId);
+        return categoryRepository.save(category);
+    }
 
-        when(categoryRepository.findAll()).thenReturn(List.of(category));
-
+    @Test
+    void findAllEnabled_returnsOnlyEnabledCategories() {
+        List<ProjectCategoryEnabledResponse> result = categoryService.findAllEnabled();
+        
+        assertThat(result).hasSize(2);
+        assertThat(result).extracting(response -> response.getName())
+        .containsExactlyInAnyOrder("Engineering", "Marketing");
+    }
+    
+    @Test
+    void findAll_returnsAllSeededCategories() {
         List<ProjectCategoryResponse> result = categoryService.findAll();
 
-        assertThat(result).hasSize(1);
-        assertInstanceOf(ProjectCategoryResponse.class, result.get(0));
-        assertThat(result.get(0).getName()).isEqualTo(categoryName);
-        assertThat(result.get(0).getId()).isEqualTo(category.getId());
+        assertThat(result).hasSize(3);
+        assertThat(result).extracting(response -> response.getName())
+        .containsExactlyInAnyOrder("Engineering", "Marketing", "Legacy");
+    }
+    
+    @Test
+    void findOne_returnsCategoryById() {
+        RequestById id = RequestById.builder()
+        .objectId(marketingId)
+        .build();
 
+        ProjectCategoryResponse result = categoryService.findOne(id);
+
+        assertNotNull(result);
+        assertEquals(marketingId, result.getId());
+        assertEquals("Marketing", result.getName());
+        assertEquals("Marketing projects", result.getDescription());
+        assertEquals(true, result.isEnabled());
     }
 
 }
