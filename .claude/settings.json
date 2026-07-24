@@ -3,7 +3,23 @@
     "allow": [
       "Bash(./mvnw.cmd -q -DskipTests compile)",
       "Bash(./mvnw.cmd -DskipTests compile)",
-      "Bash(./mvnw.cmd -q -DskipTests clean compile)"
+      "Bash(./mvnw.cmd -q -DskipTests clean compile)",
+      "Bash(./mvnw.cmd test *)",
+      "Read(//c/Users/isario/.m2/repository/org/springframework/boot/**)",
+      "Bash(./mvnw.cmd -q dependency:tree -Dincludes=org.springframework.boot:spring-boot-test-autoconfigure)",
+      "Bash(./mvnw.cmd -q dependency:tree)",
+      "Bash(./mvnw.cmd dependency:tree)",
+      "Bash(./mvnw.cmd -q test-compile)",
+      "Bash(unzip -l ~/.m2/repository/org/springframework/boot/spring-boot-test-autoconfigure/4.1.0/spring-boot-test-autoconfigure-4.1.0.jar)",
+      "Bash(find ~/.m2/repository/org/springframework/boot -maxdepth 1 -type d | sed 's#.*/##' | sort)",
+      "Read(//c/Users/isario/.m2/repository/org/springframework/boot/spring-boot-starter-webmvc-test/**)",
+      "Bash(xargs cat)",
+      "Bash(./mvnw.cmd clean *)",
+      "Bash(rm -f /tmp/DebugJson.java /tmp/DebugJson.class)",
+      "Bash(javap -p target/classes/com/worktrack/dtos/CreateProjectRequest.class)"
+    ],
+    "additionalDirectories": [
+      "\\tmp"
     ]
   }
 }
