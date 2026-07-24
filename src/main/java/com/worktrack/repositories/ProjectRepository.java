@@ -10,6 +10,6 @@ import com.worktrack.util.ProjectStatus;
 
 public interface ProjectRepository extends JpaRepository<Project, UUID> {
 
-    List<Project> findByProjectStatus(ProjectStatus status);
+    List<Project> findByProjectStatusIn(List<ProjectStatus> statuses);
 
 }

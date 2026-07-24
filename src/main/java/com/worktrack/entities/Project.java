@@ -18,9 +18,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Builder
-@Getter
+@Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 
@@ -31,10 +32,10 @@ public class Project extends BaseEntity {
     @Column(nullable = false, length = 100)
     private String name;
 
-    @Column(nullable = false, length = 500)
+    @Column(nullable = true, length = 500)
     private String description;
 
-    @Column(nullable = false, updatable = false)
+    @Column(nullable = true)
     private LocalDateTime startedAt;
     
     @Column(nullable = true)
@@ -44,7 +45,7 @@ public class Project extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private  ProjectStatus projectStatus;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", nullable = false)
     private ProjectCategory category;
 

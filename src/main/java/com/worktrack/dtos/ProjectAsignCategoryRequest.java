@@ -13,9 +13,12 @@ import lombok.Setter;
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class RequestById {
+public class ProjectAsignCategoryRequest {
 
-    @NotBlank(message = "Id is required.")
-    private UUID objectId;
+    @NotBlank(message = "Project ID is required.")
+    private UUID projectId;
+
+    @NotBlank(message = "Category is required.")
+    private String categoryName;
 
 }

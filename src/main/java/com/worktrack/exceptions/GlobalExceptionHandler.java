@@ -6,13 +6,38 @@ import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import lombok.extern.slf4j.Slf4j;
 
-@RestControllerAdvice
 @Slf4j
+@RestControllerAdvice
 public class GlobalExceptionHandler extends Exception {
+
+	@ExceptionHandler(CategoryAlreadyExistsException.class)
+	public ResponseEntity<Map<String, Object>> handleCategoryAlreadyExists(CategoryAlreadyExistsException ex) {
+		log.error("Category already exists: {}", ex.getMessage());
+		return buildResponse(HttpStatus.CONFLICT, ex.getMessage());
+	}
+
+	@ExceptionHandler(CategoryDisabledException.class)
+	public ResponseEntity<Map<String, Object>> handleCategoryDisabled(CategoryDisabledException ex) {
+		log.error("Category is disabled: {}", ex.getMessage());
+		return buildResponse(HttpStatus.CONFLICT, ex.getMessage());
+	}
+
+	@ExceptionHandler(CategoryNotFoundException.class)
+	public ResponseEntity<Map<String, Object>> handleCategoryAlreadyExists(CategoryNotFoundException ex) {
+		log.error("Category not found: {}", ex.getMessage());
+		return buildResponse(HttpStatus.NOT_FOUND, ex.getMessage());
+	}
+
+	@ExceptionHandler(ProjectNotFoundException.class)
+	public ResponseEntity<Map<String, Object>> handleProjectNotFound(ProjectNotFoundException ex) {
+		log.error("Project not found: {}", ex.getMessage());
+		return buildResponse(HttpStatus.NOT_FOUND, ex.getMessage());
+	}
 
     private ResponseEntity<Map<String, Object>> buildResponse(HttpStatus status, String message) {
 		Map<String, Object> body = new LinkedHashMap<>();

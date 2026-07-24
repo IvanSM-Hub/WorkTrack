@@ -1,8 +1,9 @@
 package com.worktrack.dtos;
 
-import java.util.UUID;
+import java.util.List;
 
-import jakarta.validation.constraints.NotBlank;
+import com.worktrack.util.ProjectStatus;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,9 +14,8 @@ import lombok.Setter;
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class RequestById {
+public class ProjectsFilteredByStatusRequest {
 
-    @NotBlank(message = "Id is required.")
-    private UUID objectId;
+    private List<ProjectStatus> projectStatus;
 
 }
