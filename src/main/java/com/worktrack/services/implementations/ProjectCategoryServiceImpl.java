@@ -136,7 +136,7 @@ public class ProjectCategoryServiceImpl extends CRUDServiceImpl<ProjectCategory,
 
         if (category == null) {
             throw new CategoryNotFoundException("Category not found: " 
-                + updateProjectCategoryRequest.getName());
+                + updateProjectCategoryRequest.getId());
         }
 
         category.setName(updateProjectCategoryRequest.getName());
